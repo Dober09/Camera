@@ -1,0 +1,109 @@
+{
+  "scanned_items": [
+    {
+      "barcode": "6001710010253",
+      "format": "EAN_13",
+      "product": {
+        "name": "Sasko Brown Bread",
+        "category": "Fruits",
+        "price": 2.99,
+        "weight": "1 kg",
+        "manufacturer": "Sasko",
+        "stock_status": "In Stock",
+        "expiry_date": "2024-11-15",
+        "nutrition": {
+          "calories": 89,
+          "protein": "1.1g",
+          "carbohydrates": "22.8g",
+          "fat": "0.3g"
+        }
+      }
+    },
+    {
+      "barcode": "5449000104885",
+      "format": "UPC_A",
+      "product": {
+        "name": "Sprite",
+        "category": "drink",
+        "price": 3.49,
+        "weight": "500g",
+        "manufacturer": "Healthy Bakes",
+        "stock_status": "Low Stock",
+        "expiry_date": "2024-11-10",
+        "nutrition": {
+          "calories": 247,
+          "protein": "8g",
+          "carbohydrates": "46g",
+          "fat": "3.2g"
+        }
+      }
+    },
+    {
+      "barcode": "5449000009067",
+      "format": "CODE_128",
+      "product": {
+        "name": "Coca-Cola",
+        "category": "Drink",
+        "price": 4.99,
+        "volume": "1 L",
+        "manufacturer": "Green Valley Dairy",
+        "stock_status": "In Stock",
+        "expiry_date": "2024-11-12",
+        "nutrition": {
+          "calories": 146,
+          "protein": "8g",
+          "carbohydrates": "12g",
+          "fat": "8g"
+        }
+      }
+    },
+    {
+      "barcode": "978156619909",
+      "format": "EAN_13",
+      "product": {
+        "name": "Free Range Eggs",
+        "category": "Dairy",
+        "price": 5.99,
+        "quantity": "12 pieces",
+        "manufacturer": "Happy Hens Farm",
+        "stock_status": "In Stock",
+        "expiry_date": "2024-11-20",
+        "nutrition": {
+          "calories": 72,
+          "protein": "6.3g",
+          "carbohydrates": "0.4g",
+          "fat": "4.8g"
+        }
+      }
+    },
+    {
+      "barcode": "400123456789",
+      "format": "UPC_A",
+      "product": {
+        "name": "Natural Yogurt",
+        "category": "Dairy",
+        "price": 2.49,
+        "volume": "500g",
+        "manufacturer": "Green Valley Dairy",
+        "stock_status": "Out of Stock",
+        "expiry_date": "2024-11-14",
+        "nutrition": {
+          "calories": 59,
+          "protein": "10g",
+          "carbohydrates": "3.6g",
+          "fat": "0.4g"
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "last_updated": "2024-11-06",
+    "version": "1.0",
+    "total_items": 5,
+    "supported_formats": [
+      "EAN_13",
+      "UPC_A",
+      "CODE_128"
+    ]
+  }
+}
