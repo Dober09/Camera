@@ -1,6 +1,9 @@
 ﻿using Microsoft.Extensions.Logging;
 using Camera.MAUI;
 using WorldMap.Service;
+using WorldMap.ViewModel;
+using WorldMap.View;
+using WorldMap.Converter;
 
 namespace WorldMap
 {
@@ -10,6 +13,10 @@ namespace WorldMap
         {
             var builder = MauiApp.CreateBuilder();
             builder.Services.AddSingleton<IBarcodeService, BarcodeService>();
+            builder.Services.AddTransient<BarcodeViewModel>();
+            builder.Services.AddTransient<LandingPage>();
+
+            builder.Services.AddSingleton<NotNullConverter>();
             builder
                 .UseMauiApp<App>()
                 .UseMauiCameraView()

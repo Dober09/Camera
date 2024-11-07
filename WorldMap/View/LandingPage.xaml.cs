@@ -1,15 +1,18 @@
 using Camera.MAUI;
-
+using WorldMap.ViewModel;
 namespace WorldMap.View;
 
 public partial class LandingPage : ContentPage
 {
     private bool isCameraInitialized = false;
     private bool hasPermission = false;
-    private bool _isScanning = false;
-    public LandingPage()
+    
+    private readonly BarcodeViewModel _viewModel;
+    public LandingPage(BarcodeViewModel viewModel)
     {
         InitializeComponent();
+        _viewModel = viewModel;
+        BindingContext = viewModel;
     }
 
 
@@ -99,7 +102,7 @@ public partial class LandingPage : ContentPage
 
     private void SetupBarcodeScanning()
     {
-
+        
         // Defined which barcode formats to scan form
         var barcodeFormats = BarcodeFormat.EAN_13 | BarcodeFormat.UPC_A |
             BarcodeFormat.CODE_128;
@@ -110,7 +113,7 @@ public partial class LandingPage : ContentPage
         {
             AutoRotate = true,
             PossibleFormats
-            = { barcodeFormats },
+            =new List<BarcodeFormat> { barcodeFormats },
             TryHarder = true,
         };
         
@@ -119,25 +122,39 @@ public partial class LandingPage : ContentPage
 
     }
 
-    private void CameraView_BarcodeDetected(object sender, Camera.MAUI.ZXingHelper.BarcodeEventArgs args)
+    private async void CameraView_BarcodeDetected(object sender, Camera.MAUI.ZXingHelper.BarcodeEventArgs args)
     {
-        MainThread.BeginInvokeOnMainThread(() =>
-        {
+       if (!_viewModel.IsScanning) return;
 
+       var barcode = args.Result[0].Text;
+       await _viewModel.HandleScannedBarcodeCommand.ExecuteAsync(barcode);
+       // MainThread.BeginInvokeOnMainThread(async () =>
+       // {
+         //   var scannerBarcode = args.Result[0].Text;
+
+           // var baccodeDate = await _barcodeService.GetProductByBarcodeAsync(scannerBarcode);
+
+          //  if (baccodeDate  != null )
+            //{
             //Display the barcode result 
-            barcodeResult.Text = $"Barcode: {args.Result[0].Text}\nFormat: {args.Result[0].BarcodeFormat}";
+           // barcodeResult.Text = $"Barcode: {args.Result[0].Text}\nFormat: {args.Result[0].BarcodeFormat}";
+                
+            //}else
+            //{
+              //  barcodeResult.Text = $"Product not found for barcode: {scannerBarcode}";
+            //}
 
             // optionslly pause scanning after defection
-            if (_isScanning)
-            {
-                _isScanning = false;
-                cameraView.BarCodeDetectionEnabled = false;
-                toogleScannningButton.Text = "Start Scanning";
-            }
-        });
+           // if (_isScanning)
+           // {
+             //   _isScanning = false;
+               // cameraView.BarCodeDetectionEnabled = false;
+               // toogleScannningButton.Text = "Start Scanning";
+           // }
+       // });
     }
 
-    private void OnToggleScanningClicked(object sender, EventArgs e)
+    /*private void OnToggleScanningClicked(object sender, EventArgs e)
     {
         _isScanning = ! _isScanning;
         cameraView.BarCodeDetectionEnabled= _isScanning;
@@ -146,7 +163,7 @@ public partial class LandingPage : ContentPage
         if (!_isScanning) {
             barcodeResult.Text = string.Empty;
        }
-    }
+    }*/
 
     private void OnSwitchCameraClicked(object sender, EventArgs e)
     {
